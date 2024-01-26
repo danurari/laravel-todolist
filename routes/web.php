@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(\App\Http\Controllers\UserController::class)->group(function (){
-    Route::get('/', 'login');
-    Route::post('/login', 'doLogin');
+    Route::get('/login', 'login')->middleware(\App\Http\Middleware\OnlyGuestMiddleware::class);
+    Route::post('/login', 'doLogin')->middleware(\App\Http\Middleware\OnlyGuestMiddleware::class);
     Route::post('/logout', 'doLogout');
 });
